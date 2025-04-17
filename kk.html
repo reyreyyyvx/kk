@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHICKEN JOCKEYYY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      width: 100%;
+      background: url("kir.gif") center center / cover, #121212;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      color: #ff007f;
+      text-shadow: 2px 2px #000;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: #00fff7;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px #000;
+    }
+
+    .start-btn {
+      background: #ff0000;
+      color: #fff;
+      padding: 15px 40px;
+      border: 4px solid #fff;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 4px 4px #000;
+      transition: transform 0.2s;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-3px);
+      background: #cc0000;
+    }
+
+    #card {
+      min-height: 100vh;
+      background: url("kirb.gif") center center / cover, #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .birthday-card {
+      width: 350px;
+      background: #222;
+      border: 8px solid #00fff7;
+      padding: 30px;
+      box-shadow: 6px 6px #000;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    #card:target .birthday-card {
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .birthday-card h2 {
+      font-size: 16px;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+
+    .card-content {
+      font-size: 12px;
+      color: #ffffff;
+      background: #333;
+      border: 4px solid #fff;
+      padding: 20px;
+      margin-top: 10px;
+      box-shadow: 4px 4px #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .pixel-avatar {
+      width: 48px;
+      height: 48px;
+      background: url('https://i.imgur.com/IaUrttj.png') no-repeat center center / cover;
+      position: absolute;
+      top: -28px;
+      left: -28px;
+    }
+
+    .typewriter-text {
+      overflow: hidden;
+      border-right: 2px solid #00fff7;
+      white-space: pre-wrap;
+      animation: typing 4s steps(120, end);
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    audio {
+      display: none;
+    }
+
+    #gifts {
+      min-height: 100vh;
+      padding: 80px 20px;
+      background: url("cake.gif") center center / cover, #121212;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #gifts h1 {
+      color: #ff007f;
+      font-size: 20px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .gift-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .gift {
+      width: 140px;
+      height: 140px;
+      background: url('https://i.imgur.com/5Gv9s7k.png') no-repeat center center / contain;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.1s;
+    }
+
+    .gift:hover::after {
+      content: "🎁";
+      font-size: 20px;
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+    }
+
+    .gift1 { background: url("m.jpeg") no-repeat center center / contain; }
+    .gift2 { background: url("p.jpeg") no-repeat center center / contain; }
+    .gift3 { background: url("v.jpeg") no-repeat center center / contain; }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: #111;
+      border: 6px solid #00fff7;
+      padding: 30px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      color: #fff;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
+      box-shadow: 6px 6px #000;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #ff007f;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #reasons {
+      min-height: 100vh;
+      padding: 80px 20px;
+      background: url("k.gif") center center / cover, #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .reasons-content {
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 4px solid #00fff7;
+      padding: 40px;
+      box-shadow: 6px 6px #000;
+    }
+
+    .reasons-content h1 {
+      color: #ff007f;
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px #000;
+    }
+
+    .reason-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .reason-list li {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00fff7;
+      padding: 15px 20px;
+      margin: 10px 0;
+      color: #ffffff;
+      font-size: 12px;
+      text-shadow: 1px 1px #000;
+      box-shadow: 4px 4px #000;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .pixel-footer {
+      background: #121212;
+      border-top: 4px solid #00fff7;
+      text-align: center;
+      padding: 20px 0;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 10px;
+      color: #ff007f;
+      text-shadow: 1px 1px #000;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Your body content stays the same! -->
+
+  <!-- Retro Sound -->
+  <audio id="blip-sound" src="https://freesound.org/data/previews/341/341695_3248244-lq.mp3"></audio>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>🎂 Happy Birthday, Katkat! 🎉</h1>
+    <p>Press START to begin your best level yet.</p>
+    <a href="#card" class="start-btn" onclick="playSound()">Start</a>
+  </section>
+
+  <!-- Birthday Card -->
+  <section id="card">
+    <div class="birthday-card">
+      <h2>💌 Incoming Message...</h2>
+      <div class="card-content">
+        <div class="pixel-avatar"></div>
+        <div class="typewriter-text" id="typewriter">
+          My Dearest Katkat,
+
+          Happy birthday, baby. GAHDAMN U OLD ASF. I know you're like, a billion years old, but I still wanted to do something special for you.
+          You bring me happiness every day (next to the minecraft movie), and you are the best thing to ever happen to me.
+
+          I hope this year is your best year yet.
+          Hoping you'd want to level up with me for more years to come 💖
+
+          – Reyrey
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gifts Section -->
+  <section id="gifts">
+    <h1>🎁 Open Your Pixel Presents!</h1>
+    <div class="gift-grid">
+<div class="gift gift1" onclick="openGift('playlist')"></div>
+<div class="gift gift2" onclick="openGift('photos')"></div>
+<div class="gift gift3" onclick="openGift('video')"></div>
+  </div>
+  </section>
+
+<div id="gift-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeGift()">X</span>
+    <div id="gift-inner-content">
+      <!-- content gets injected here -->
+    </div>
+  </div>
+</div>
+
+<!-- Reasons Why I Love You Section -->
+<section id="reasons">
+  <div class="reasons-content">
+    <h1>💖 Reasons Why I Love You (This is not all BUT I'M SO SLEEPY ITS ALL I CAN TYPE) 💖</h1>
+    <ul class="reason-list">
+      <li>You always make me happy, even just the thought of you.</li>
+      <li>You try your best to communicate even when you're going through rough times.</li>
+      <li>You support me in whatever I tell you (EXCEPT my brainrot :(()</li>
+      <li>You're HELLA cute and ridiculously loveable (like, OP level).</li>
+      <li>You were friends with one of my favorite species to ever live, which is dinosaurs.</li>
+      <li>You keep up with me, even when I'm too autistic at times.</li>
+      <li>You're still trying your best everyday, even with everything you've been through :). </li>
+      <li>I LOVE EVERYTHING ABOUT YOU.</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="pixel-footer">
+  <p>🎮 Achievement Unlocked: Loving You Forever. 💖</p>
+<br>
+  <p> - Your Player 2, Reyrey <3 </p>
+</footer>
+
+
+  <script>
+    function playSound() {
+      document.getElementById('blip-sound').play();
+    }
+document.addEventListener("DOMContentLoaded", () => {
+  const gifts = document.querySelectorAll('.gift');
+  const modal = document.getElementById('gift-modal');
+  const content = document.getElementById('gift-inner-content');
+
+  // Pixel-style hover pop effect
+  gifts.forEach(gift => {
+    gift.addEventListener('mouseover', () => {
+      gift.style.transform = "scale(1.2)";
+      gift.style.transition = "transform 0.05s steps(2, end)";
+    });
+
+    gift.addEventListener('mouseout', () => {
+      gift.style.transform = "scale(1)";
+      gift.style.transition = "transform 0.05s steps(2, end)";
+    });
+  });
+
+  // Click to open gift modal with pixel jump
+  gifts.forEach((gift, index) => {
+    gift.addEventListener('click', () => {
+      let message = "";
+      switch(index) {
+        case 0:
+          message = "🎵 DON'T WORRY AGE AIN'T NOTHIN' BUT A NUMBAHHH <br><a href='https://open.spotify.com/playlist/1Sm0c1PvoCcF9KQSmzBll1?si=7cee9e4b0a9746eb' target='_blank'>[ Open Playlist ]</a>";
+          break;
+        case 1:
+          message = "📸 Pics of uss! (and the three musketeers) <br><a href='https://drive.google.com/drive/folders/1U3pSEO9GphOaGIjsMKFEd8Meg2-1aGpH?usp=drive_link' target='_blank'>[ View Photos ]</a>";
+          break;
+        case 2:
+          message = "🎬 PLEASEEEE watch it. <br><a href='https://youtu.be/61n9yzS5Zgc?si=NHa6MVIvEsuwWd9S' target='_blank'>[ Watch Video ]</a>";
+          break;
+        case 3:
+          message = "🌍 Virtual pixel hug incoming! 🤗 You've got a 1-UP in my heart.";
+          break;
+           default:
+          message = "🎁 You've found a hidden Easter Egg!";
+      }
+
+      content.innerHTML = message;
+      modal.classList.remove('hidden');
+
+      // Pixel style pop-in animation for modal
+      const modalBox = modal.querySelector('.modal-content');
+      modalBox.style.transform = "scale(0)";
+      modalBox.style.transition = "transform 0.1s steps(2, end)";
+      setTimeout(() => {
+        modalBox.style.transform = "scale(1)";
+      }, 20);
+    });
+  });
+});
+
+function closeGift() {
+  const modal = document.getElementById('gift-modal');
+  const modalBox = modal.querySelector('.modal-content');
+  modalBox.style.transform = "scale(0)";
+  modalBox.style.transition = "transform 0.1s steps(2, end)";
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 100);
+}
+
+  </script>
+</body>
+</html>
+
